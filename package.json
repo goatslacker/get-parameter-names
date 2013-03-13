@@ -1,7 +1,7 @@
 {
   "name": "get-parameter-names",
   "author": "Josh Perez <josh@goatslacker.com>",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Retrieves parameter names from a function",
 
   "repository": {
@@ -10,10 +10,6 @@
   },
 
   "main": "index.js",
-
-  "dependencies": {
-    "esprima": "*"
-  },
 
   "keywords": [
     "parameter",
