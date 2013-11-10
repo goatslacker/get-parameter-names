@@ -16,6 +16,11 @@ Retrieves the argument names of a function
     var get = require('get-parameter-names')
     get(foo) // = ['bar', 'baz']
 
+
+## Tests
+
+    npm test
+
 ## License
 
 [MIT](http://josh.mit-license.org)

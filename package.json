@@ -9,6 +9,10 @@
     "url": "https://github.com/goatslacker/get-parameter-names.git"
   },
 
+  "scripts": {
+    "test": "./node_modules/testla/bin/testla test"
+  },
+
   "main": "index.js",
 
   "keywords": [
@@ -18,6 +22,10 @@
     "parse",
     "name"
   ],
+
+  "dependencies": {
+    "testla": "*"
+  },
 
   "engines": {
     "node": ">= 0.4.0"
