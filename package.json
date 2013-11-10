@@ -1,20 +1,16 @@
 {
   "name": "get-parameter-names",
   "author": "Josh Perez <josh@goatslacker.com>",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Retrieves parameter names from a function",
-
   "repository": {
     "type": "git",
     "url": "https://github.com/goatslacker/get-parameter-names.git"
   },
-
   "scripts": {
     "test": "./node_modules/testla/bin/testla test"
   },
-
   "main": "index.js",
-
   "keywords": [
     "parameter",
     "argument",
@@ -22,11 +18,9 @@
     "parse",
     "name"
   ],
-
   "dependencies": {
     "testla": "*"
   },
-
   "engines": {
     "node": ">= 0.4.0"
   }
