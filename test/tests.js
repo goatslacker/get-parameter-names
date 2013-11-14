@@ -1,7 +1,7 @@
-var arg = require("../index");
-var expect = require("chai").expect;
+var arg = require('../');
+var expect = require('chai').expect;
 
-describe("function tests", function () {
+describe('function tests', function () {
   it('test1', function () {
     function /* (no parenthesis like this) */ test1(a, b, c){
       return true
