@@ -1,7 +1,12 @@
-module.exports = function (func) {
-  if(typeof func !== "function") throw "Not a function";
-  var res = /\s*function\s*\(([^)]*)/.exec(func)[1];
-  res = res.replace(/\s/g, "");
-  res = res !== "" ? res.split(",") : [];
-  return res;
-};
+var COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
+function getParameterNames(fn) {
+  var code = fn.toString().replace(COMMENTS, '');
+  var result = code.slice(code.indexOf('(') + 1, code.indexOf(')'))
+    .match(/([^\s,]+)/g);
+
+  return result === null
+    ? []
+    : result;
+}
+
+module.exports = getParameterNames;
