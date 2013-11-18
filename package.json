@@ -20,15 +20,16 @@
     "parse"
   ],
   "scripts": {
-    "test": "testla test"
+    "test": "mocha"
   },
   "files": [
     "index.js"
   ],
-  "dependencies": {
-    "testla": "~0.0.8"
-  },
   "engines": {
     "node": ">= 0.4.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "chai": "~1.8.1"
   }
 }
