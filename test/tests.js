@@ -96,27 +96,32 @@ describe('function tests', function () {
     expect(arg(π9)).to.deep.equal(['ƒ', 'µ']);
   });
 
-  it('supports ES2015 fat arrow functions with parens', function() {
+  it('supports ES2015 fat arrow functions with parens', function () {
     var f = '(a,b) => a + b'
 
     expect(arg(f)).to.deep.equal(['a', 'b']);
-  })
+  });
 
-  it('supports ES2015 fat arrow functions without parens', function() {
+  it('supports ES2015 fat arrow functions without parens', function () {
     var f = 'a => a + 2'
     expect(arg(f)).to.deep.equal(['a']);
-  })
+  });
 
-  it('ignores ES2015 default params', function() {
+  it('supports ES2015 fat arrow functions without parens and new line no parens fat arrow function', function () {
+    var f = 'a => a.map(\n b => b)';
+    expect(arg(f)).to.deep.equal(['a']);
+  });
+
+  it('ignores ES2015 default params', function () {
     // default params supported in node.js ES6
     var f11 = '(a, b = 20) => a + b'
 
     expect(arg(f11)).to.deep.equal(['a', 'b']);
-  })
+  });
 
-  it('supports function created using the Function constructor', function() {
+  it('supports function created using the Function constructor', function () {
     var f = new Function('a', 'b', 'return a + b');
 
     expect(arg(f)).to.deep.equal(['a', 'b']);
-  })
+  });
 });

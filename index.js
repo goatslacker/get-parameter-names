@@ -1,10 +1,12 @@
 var COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
 var DEFAULT_PARAMS = /=[^,]+/mg;
-var FAT_ARROWS = /=>.*$/mg;
+var FAT_ARROWS = /=>.*/mg;
+var NEWLINES = '\n'
 
 function getParameterNames(fn) {
   var code = fn.toString()
     .replace(COMMENTS, '')
+    .replace(NEWLINES, '')
     .replace(FAT_ARROWS, '')
     .replace(DEFAULT_PARAMS, '');
 
