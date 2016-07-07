@@ -112,7 +112,33 @@ describe('function tests', function () {
     expect(arg(f)).to.deep.equal(['a']);
   });
 
-  it('ignores ES2015 default params', function () {
+  it('supports ES2015 fat arrow function without parens test1.', function() {
+    var f = 'c => {\n'
+      + '  var test2 = c.resolve();\n'
+      + '  return new Test3(test2);\n'
+      +'}';
+
+    expect(arg(f)).to.deep.equal(['c']);
+  })
+
+  it('supports ES2015 fat arrow function without parens test2.', function() {
+    var f = 'a => {\n'
+      + '  return new Promise((resolve, reject) => {\n'
+      + '    setTimeout(() => resolve(a * 2), 500);\n'
+      + '  })'
+      + '}'
+
+    expect(arg(f)).to.deep.equal(['a']);
+  });
+
+  it('supports ES2015 fat arrow function without parens test3.', function() {
+    var f = items => items.map(
+      i => t.foo);
+
+    expect(arg(f)).to.deep.equal(['items']);
+  })
+
+  it('ignores ES2015 default params', function() {
     // default params supported in node.js ES6
     var f11 = '(a, b = 20) => a + b'
 
@@ -125,3 +151,4 @@ describe('function tests', function () {
     expect(arg(f)).to.deep.equal(['a', 'b']);
   });
 });
+
