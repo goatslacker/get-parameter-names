@@ -132,8 +132,8 @@ describe('function tests', function () {
   });
 
   it('supports ES2015 fat arrow function without parens test3.', function() {
-    var f = items => items.map(
-      i => t.foo);
+    var f = 'items => items.map(\n'
+      + '  i => t.foo)';
 
     expect(arg(f)).to.deep.equal(['items']);
   })
