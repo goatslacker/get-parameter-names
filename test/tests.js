@@ -96,6 +96,11 @@ describe('function tests', function () {
     expect(arg(π9)).to.deep.equal(['ƒ', 'µ']);
   });
 
+  it('test9', function() {
+    function test9() {}
+    expect(arg(test9)).to.deep.equal([]);
+  });
+
   it('supports ES2015 fat arrow functions with parens', function () {
     var f = '(a,b) => a + b'
 
@@ -137,6 +142,12 @@ describe('function tests', function () {
 
     expect(arg(f)).to.deep.equal(['items']);
   })
+
+  it('supports ES2015 fat arrow function without arguments.', function() {
+    var f = '() => 1';
+
+    expect(arg(f)).to.deep.equal([]);
+  });
 
   it('ignores ES2015 default params', function() {
     // default params supported in node.js ES6
