@@ -14,7 +14,7 @@ function getParameterNames(fn) {
     .replace(BEFORE_OPENING_PAREN, '')
     .replace(AFTER_CLOSING_PAREN, '$1');
 
-  return code.split(',');
+  return code ? code.split(',') : [];
 }
 
 module.exports = getParameterNames;
