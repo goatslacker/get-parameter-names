@@ -119,4 +119,9 @@ describe('function tests', function () {
 
     expect(arg(f)).to.deep.equal(['a', 'b']);
   })
+
+  it('functions with new lines in them work with fat arrows', function() {
+    var f = 'el => {\nX }'
+    expect(arg(f)).to.deep.equal(['el']);
+  })
 });
