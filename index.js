@@ -1,5 +1,5 @@
 var COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
-var DEFAULT_PARAMS = /=[^,]+/mg;
+var DEFAULT_PARAMS = /=[^(\),)]+/mg;
 var FAT_ARROWS = /=>.*$/mg;
 
 function getParameterNames(fn) {
