@@ -1,8 +1,10 @@
-var arg = require('../src');
-var expect = require('chai').expect;
+import arg from '../src/parser';
+import chai from 'chai';
+
+const { expect } = chai;
 
 describe('function tests', function () {
-  it('test1', function () {
+  it.only('test1', function () {
     function /* (no parenthesis like this) */ test1(a, b, c){
       return true
     }
@@ -96,7 +98,7 @@ describe('function tests', function () {
     expect(arg(π9)).to.deep.equal(['ƒ', 'µ']);
   });
 
-  it('test9', function() {
+  it('test10', function() {
     function test9() {}
     expect(arg(test9)).to.deep.equal([]);
   });
