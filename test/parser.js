@@ -1,12 +1,13 @@
-var arg = require('../');
-var expect = require('chai').expect;
+import arg from '../src';
+import chai from 'chai';
+
+const { expect } = chai;
 
 describe('function tests', function () {
   it('test1', function () {
     function /* (no parenthesis like this) */ test1(a, b, c){
       return true
     }
-
     expect(arg(test1)).to.deep.equal(['a', 'b', 'c']);
   });
 
@@ -96,27 +97,81 @@ describe('function tests', function () {
     expect(arg(π9)).to.deep.equal(['ƒ', 'µ']);
   });
 
-  it('supports ES2015 fat arrow functions with parens', function() {
+  it('test10', function() {
+    function test9() {}
+    expect(arg(test9)).to.deep.equal([]);
+  });
+
+  it('supports ES2015 fat arrow functions with parens', function () {
     var f = '(a,b) => a + b'
 
     expect(arg(f)).to.deep.equal(['a', 'b']);
-  })
+  });
 
-  it('supports ES2015 fat arrow functions without parens', function() {
+  it('supports ES2015 fat arrow functions without parens', function () {
     var f = 'a => a + 2'
     expect(arg(f)).to.deep.equal(['a']);
+  });
+
+  it('supports ES2015 fat arrow functions without parens and new line no parens fat arrow function', function () {
+    var f = 'a => a.map(\n b => b)';
+    expect(arg(f)).to.deep.equal(['a']);
+  });
+
+  it('supports ES2015 fat arrow function without parens test1.', function() {
+    var f = 'c => {\n'
+      + '  var test2 = c.resolve();\n'
+      + '  return new Test3(test2);\n'
+      +'}';
+
+    expect(arg(f)).to.deep.equal(['c']);
   })
+
+  it('supports ES2015 fat arrow function without parens test2.', function() {
+    var f = 'a => {\n'
+      + '  return new Promise((resolve, reject) => {\n'
+      + '    setTimeout(() => resolve(a * 2), 500);\n'
+      + '  })'
+      + '}'
+
+    expect(arg(f)).to.deep.equal(['a']);
+  });
+
+  it('supports ES2015 fat arrow function without parens test3.', function() {
+    var f = 'items => items.map(\n'
+      + '  i => t.foo)';
+
+    expect(arg(f)).to.deep.equal(['items']);
+  })
+
+  it('supports ES2015 fat arrow function without arguments.', function() {
+    var f = '() => 1';
+
+    expect(arg(f)).to.deep.equal([]);
+  });
 
   it('ignores ES2015 default params', function() {
     // default params supported in node.js ES6
     var f11 = '(a, b = 20) => a + b'
 
     expect(arg(f11)).to.deep.equal(['a', 'b']);
-  })
+  });
 
-  it('supports function created using the Function constructor', function() {
+  it('supports function created using the Function constructor', function () {
     var f = new Function('a', 'b', 'return a + b');
 
     expect(arg(f)).to.deep.equal(['a', 'b']);
-  })
+  });
+
+  it('supports ES2015 default params with fat arrow function with multiple arguments', function () {
+    var f = '( a = 1 , b=2, c = (err, data)=>{}) => {}';
+
+    expect(arg(f)).to.deep.equal(['a', 'b', 'c']);
+  });
+
+  it('ES2015 default params with fat arrow function in middle', function () {
+    var f = '( a = 1 , b= (err, data)=>{}, c = 3) => {}';
+
+    expect(arg(f)).to.deep.equal(['a', 'b', 'c']);
+  });
 });

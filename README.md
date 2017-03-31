@@ -1,6 +1,3 @@
-[![Build Status](https://secure.travis-ci.org/goatslacker/get-parameter-names.png)](http://travis-ci.org/goatslacker/get-parameter-names)
-[![NPM version](https://badge.fury.io/js/get-parameter-names.png)](http://badge.fury.io/js/get-parameter-names)
-[![Dependency Status](https://david-dm.org/goatslacker/get-parameter-names.png)](https://david-dm.org/goatslacker/get-parameter-names)
 
 get-parameter-names
 ===================
@@ -24,6 +21,14 @@ var get = require('get-parameter-names')
 get(foo) // = ['bar', 'baz']
 ```
 
+Also supports fat arrow and default functions
+
+```js
+const foo = (a, b = 20) => a + b
+
+var get = require('get-parameter-names')
+get(foo) // = ['a', 'b']
+```
 
 ## Tests
 
