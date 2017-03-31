@@ -1,4 +1,4 @@
-import arg from '../src/parser';
+import arg from '../src';
 import chai from 'chai';
 
 const { expect } = chai;
@@ -8,7 +8,6 @@ describe('function tests', function () {
     function /* (no parenthesis like this) */ test1(a, b, c){
       return true
     }
-    console.log(arg(test1));
     expect(arg(test1)).to.deep.equal(['a', 'b', 'c']);
   });
 
