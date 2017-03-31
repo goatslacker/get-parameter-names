@@ -5,7 +5,7 @@
     "John Dean <john.holmes.dean@gmail.com",
     "Benjamin Botto <benjamin.botto@gmail.com>"
   ],
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Retrieves parameter names from a function",
   "license": "MIT",
   "repository": {
