@@ -4,11 +4,11 @@ import chai from 'chai';
 const { expect } = chai;
 
 describe('function tests', function () {
-  it.only('test1', function () {
+  it('test1', function () {
     function /* (no parenthesis like this) */ test1(a, b, c){
       return true
     }
-
+    console.log(arg(test1));
     expect(arg(test1)).to.deep.equal(['a', 'b', 'c']);
   });
 
@@ -168,13 +168,9 @@ describe('function tests', function () {
     var f = '( a = 1 , b=2, c = (err, data)=>{}) => {}';
 
     expect(arg(f)).to.deep.equal(['a', 'b', 'c']);
-
-    f = '( a = 1 , b= (err, data)=>{}, c = 3) => {}';
-
-    expect(arg(f)).to.deep.equal(['a', 'b', 'c']);
   });
 
-  it('supports ES2015 default params with fat arrow function with multiple arguments 2', function () {
+  it('ES2015 default params with fat arrow function in middle', function () {
     var f = '( a = 1 , b= (err, data)=>{}, c = 3) => {}';
 
     expect(arg(f)).to.deep.equal(['a', 'b', 'c']);

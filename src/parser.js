@@ -9,7 +9,6 @@ const NEW_LINES = /\r?\n|\r/mg;
 const nonVarChars = ['=', '(', ')', ','];
 
 function *matchNexter(string) {
-  //if (string[0] === '(')
   console.log(`Chopping ${string}`);
   function updateIndex(stringIndex) {
     console.log(`Updating index starting at: ${stringIndex}`);
@@ -106,6 +105,7 @@ export default function parse(string) {
 
   const vars = [];
   if (value && value.subString && value.subString.length) {
+    console.log(`Pushing ${value.subString} to vars to start`);
     vars.push(value.subString);
   }
   console.log(`Starting var: ${vars}`);
@@ -115,6 +115,10 @@ export default function parse(string) {
     console.log(`Continuing with ${value.subString}`);
     const firstChar = value.subString[0];
     console.log(`firstChar: ${firstChar}`);
+    console.log(`firstVar: ${firstVar}`);
+    console.log(`argsEnded: ${argsEnded}`);
+    console.log(`depth: ${JSON.stringify(depth)}`);
+    console.log(`Current vars: ${vars}`);
     if (firstChar === '=') {
       if (value.subString[1] === '>' && depth.defaultParams === 0) {
         console.log('Found =>');
@@ -124,23 +128,35 @@ export default function parse(string) {
         depth.defaultParams++;
       }
     } else if (firstChar === '(' && !firstVar && vars.length) {
-      console.log('Found (')
+      firstVar = true;
+      console.log('Found (');
       depth.parenthesis++;
     } else if (firstChar === '(' && firstVar) {
+      console.log(`Removing function name from vars`);
       vars.pop();
+      const newVar = value.subString.slice(1);
+      if(newVar.length) {
+        console.log(`Pushing to vars: ${newVar}`)
+        vars.push(newVar);
+      }
+      firstVar = false;
     } else if (firstChar === ')' && depth.parenthesis > 0) {
       console.log('Found )');
+      depth.parenthesis--;
+    } else if (firstChar === ')' && depth.parenthesis === 0) {
+      console.log('Found ) and we are done');
+      argsEnded = true;
     } else if (firstChar === ',' || (firstChar === '(' && vars.length === 0)) {
-      console.log('Found \'')
+      const newVar = value.subString.slice(1);
+      console.log(`Found '${newVar}'`);
       if (depth.parenthesis === 0) {
-        depth.defaultParams === 0;
-        console.log(`Pushing to vars: ${value.subString.slice(1)}`)
-        vars.push(value.subString.slice(1));
+        depth.defaultParams = 0;
+        console.log(`Pushing to vars: ${newVar}`)
+        vars.push(newVar);
       }
     }
     next = gen.next();
     value = next.value;
-    firstVar = false;
   }
   return vars;
 }

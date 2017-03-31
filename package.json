@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "babel-core": "^6.18.2",
-    "babel-polyfill": "^6.16.0"
+    "babel-polyfill": "^6.16.0",
+    "debug": "^2.6.3"
   }
 }
