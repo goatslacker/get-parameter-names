@@ -174,4 +174,10 @@ describe('function tests', function () {
 
     expect(arg(f)).to.deep.equal(['a', 'b', 'c']);
   });
+
+  it('ES2015 default params with var re-assignment to an argument like value', function () {
+    var f = 'function f(id = 1){ id = \'a,b\'; }';
+
+    expect(arg(f)).to.deep.equal(['id']);
+  });
 });
