@@ -5,6 +5,7 @@ const debug = debugFactory('getParameterNames');
 const COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
 const SPACES = /\s/mg;
 const NEW_LINES = /\r?\n|\r/mg;
+const ASYNC = /^\s*async(\s*|\()(?!\s*\=)/;
 
 const nonVarChars = ['=', '(', ')', ','];
 
@@ -61,6 +62,7 @@ export default function parse(string) {
     .toString()
     .replace(NEW_LINES, '')
     .replace(COMMENTS, '')
+    .replace(ASYNC, '')
     .replace(SPACES, '')
   );
 

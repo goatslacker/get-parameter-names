@@ -180,4 +180,52 @@ describe('function tests', function () {
 
     expect(arg(f)).to.deep.equal(['id']);
   });
+
+  it('ignores ES2016 async keyword test 1', function() {
+    var f = 'async (a, b) => a + b'
+
+    expect(arg(f)).to.deep.equal(['a', 'b']);
+  });
+
+  it('ignores ES2016 async keyword test 2', function() {
+    var f = 'async a => a'
+
+    expect(arg(f)).to.deep.equal(['a']);
+  });
+
+  it('ignores ES2016 async keyword test 3', function() {
+    var f = 'async(a) => a'
+
+    expect(arg(f)).to.deep.equal(['a']);
+  });
+
+  it('ignores ES2016 async keyword test 4', function() {
+    var f = 'async function(async, b) { return a + b }'
+
+    expect(arg(f)).to.deep.equal(['async', 'b']);
+  });
+
+  it('ignores ES2016 async keyword test 5', function() {
+    var f = 'async function myfunc(async, b) { return a + b }'
+
+    expect(arg(f)).to.deep.equal(['async', 'b']);
+  });
+
+  it('ignores ES2016 async keyword test 6', function() {
+    var f = 'function async(async, b) { return a + b }'
+
+    expect(arg(f)).to.deep.equal(['async', 'b']);
+  });
+
+  it('ignores ES2016 async keyword test 7', function() {
+    var f = '(async) => 33'
+
+    expect(arg(f)).to.deep.equal(['async']);
+  });
+
+  it('ignores ES2016 async keyword test 8', function() {
+    var f = 'async => 33'
+
+    expect(arg(f)).to.deep.equal(['async']);
+  });
 });
