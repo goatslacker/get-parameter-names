@@ -30,6 +30,15 @@ var get = require('@captemulation/get-parameter-names')
 get(foo) // = ['a', 'b']
 ```
 
+Also supports ES6 async functions
+
+```js
+async function foo(a, b) { return a + b }
+
+var get = require('@captemulation/get-parameter-names')
+get(foo) // = ['a', 'b']
+```
+
 ## Tests
 
 ```

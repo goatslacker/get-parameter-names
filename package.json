@@ -3,7 +3,8 @@
   "author": "Josh Perez <josh@goatslacker.com>",
   "contributors": [
     "John Dean <john.holmes.dean@gmail.com",
-    "Benjamin Botto <benjamin.botto@gmail.com>"
+    "Benjamin Botto <benjamin.botto@gmail.com>",
+    "german <german@gametube.org>"
   ],
   "version": "1.0.1",
   "description": "Retrieves parameter names from a function",
