@@ -228,4 +228,53 @@ describe('function tests', function () {
 
     expect(arg(f)).to.deep.equal(['async']);
   });
+
+  describe('ES2016 Class', () => {
+    it('constructor with static get before constructor', function () {
+      var f = 'class Cat {\n      static get foo () {\n  ' +
+        'return [];\n      }\n      static get bar () {\n' +
+        'return [];\n      }\n      constructor(a, b){}\n    }';
+
+      expect(arg(f)).to.deep.equal(['a', 'b']);
+    })
+
+    it('static get before constructor', function () {
+      class Cat {
+        static get name() {
+          return 'fido';
+        }
+      }
+      expect(arg(Cat)).to.deep.equal([]);
+    })
+
+    it('class with empty constructor', function () {
+      class Cat {
+        constructor() { }
+      }
+      expect(arg(Cat)).to.deep.equal([]);
+    })
+
+    it('class with static get after constructor', function () {
+      class Cat {
+        constructor(a, b) { }
+        static get name() {
+          return 'fido';
+        }
+      }
+      expect(arg(Cat)).to.deep.equal(['a', 'b']);
+    })
+
+    it('class constructor with inheritance', function () {
+      class Animal {
+        constructor() { }
+      }
+      class Cat extends Animal {
+        constructor(a, b) {
+          super();
+          expect(arg(this.constructor)).to.deep.equal(['a', 'b']);
+        }
+      }
+      expect(arg(Cat)).to.deep.equal(['a', 'b']);
+    });
+  });
 });

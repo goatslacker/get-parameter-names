@@ -39,6 +39,25 @@ var get = require('@captemulation/get-parameter-names')
 get(foo) // = ['a', 'b']
 ```
 
+Also supports ES6 Class constructors
+
+```js
+
+var get = require('@captemulation/get-parameter-names')
+
+class Animal{
+  constructor(){}
+}
+class Cat extends Animal{
+  constructor(a, b){
+    super();
+    get(this.constructor) // = ['a', 'b']
+  }
+}
+
+get(Cat) // = ['a', 'b']
+```
+
 ## Tests
 
 ```
