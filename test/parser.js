@@ -228,4 +228,12 @@ describe('function tests', function () {
 
     expect(arg(f)).to.deep.equal(['async']);
   });
+
+  it('supports ES2015 class constructor with static get before constructor', function() {
+    var f = 'class Cat {\n      static get foo () {\n  ' +      
+     'return [];\n      }\n      static get bar () {\n' +
+     'return [];\n      }\n      constructor(a, b){}\n    }';
+
+    expect(arg(f)).to.deep.equal(['a', 'b']);
+  })
 });

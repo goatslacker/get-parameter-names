@@ -6,6 +6,7 @@ const COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
 const SPACES = /\s/mg;
 const NEW_LINES = /\r?\n|\r/mg;
 const ASYNC = /^\s*async(\s*|\()(?!\s*\=)/;
+const ES6_STATIC = /static.*$/mg;
 
 const nonVarChars = ['=', '(', ')', ','];
 
@@ -60,6 +61,7 @@ function *matchNexter(string) {
 export default function parse(string) {
   const gen = matchNexter(string
     .toString()
+    .replace(ES6_STATIC, '')
     .replace(NEW_LINES, '')
     .replace(COMMENTS, '')
     .replace(ASYNC, '')
