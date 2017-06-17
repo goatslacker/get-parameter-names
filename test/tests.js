@@ -123,17 +123,11 @@ describe('function tests', function () {
     expect(arg(f)).to.deep.equal(['a', 'b']);
   })
 
-  it('supports es6 class with static get before constructor', function() {
-    class Cat {
-      static get name() {
-        return 'fido';
-      }
-      constructor(a, b) {
+  it('supports ES2015 class constructor with static get before constructor', function() {
+    var f = 'class Cat {\n      static get foo () {\n  ' +      
+     'return [];\n      }\n      static get bar () {\n' +
+     'return [];\n      }\n      constructor(a, b){}\n    }';
 
-      }
-    }
-    var f = new Cat('a', 'b', 'return a + b');
-
-    expect(arg(Cat)).to.deep.equal(['a', 'b']);
+    expect(arg(f)).to.deep.equal(['a', 'b']);
   })
 });
