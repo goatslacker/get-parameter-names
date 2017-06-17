@@ -1,3 +1,6 @@
+
+'use strict';
+
 var arg = require('../');
 var expect = require('chai').expect;
 
@@ -118,5 +121,19 @@ describe('function tests', function () {
     var f = new Function('a', 'b', 'return a + b');
 
     expect(arg(f)).to.deep.equal(['a', 'b']);
+  })
+
+  it('supports es6 class with static get before constructor', function() {
+    class Cat {
+      static get name() {
+        return 'fido';
+      }
+      constructor(a, b) {
+
+      }
+    }
+    var f = new Cat('a', 'b', 'return a + b');
+
+    expect(arg(Cat)).to.deep.equal(['a', 'b']);
   })
 });
