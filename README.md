@@ -24,6 +24,42 @@ var get = require('get-parameter-names')
 get(foo) // = ['bar', 'baz']
 ```
 
+Also supports fat arrow and default functions
+
+```js
+const foo = (a, b = 20) => a + b
+
+var get = require('get-parameter-names')
+get(foo) // = ['a', 'b']
+```
+
+Also supports ES6 async functions
+
+```js
+async function foo(a, b) { return a + b }
+
+var get = require('get-parameter-names')
+get(foo) // = ['a', 'b']
+```
+
+Also supports ES6 Class constructors
+
+```js
+
+var get = require('get-parameter-names')
+
+class Animal{
+  constructor(){}
+}
+class Cat extends Animal{
+  constructor(a, b){
+    super();
+    get(this.constructor) // = ['a', 'b']
+  }
+}
+
+get(Cat) // = ['a', 'b']
+```
 
 ## Tests
 
